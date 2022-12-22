@@ -12,17 +12,22 @@ var endScreen = document.getElementById('end-screen');
 var finalScore = document.getElementById('final-score');
 
 
+
 // Set Current Question Index To First Question
 var currentQuestionIndex = 0;
 var quizTime = 60;
-// Create a function to set quiz time to decrement from 75s
+// Create a function to set quiz time to decrement from 60s and to stop the timer once the time is zero
 function timeLeft() {
 
     var timer = setInterval(function () {
         time.innerText = quizTime;
         quizTime--;
         if (quizTime < 0) {
-            clearTimeout(timer);
+            localStorage.setItem("Score", JSON.stringify(quizTime + 1)); // Set score to zero as time is out
+            questionWrap.classList.add('hide'); // hides the last question
+            endScreen.classList.remove('hide'); // displays the page for test taker to enter his/her initials
+            finalScore.innerHTML = JSON.parse(localStorage.getItem("Score")); // displays the score for that test and asks for the test taker's initial
+            clearTimeout(timer); // stops the timer countdown
         }
     }, 1000);
 
@@ -48,17 +53,16 @@ function startQuiz() {
             var choice = choices[i];  //Set choice to the current choice
             var correctAnswer = currentQuestion.answer === choice;  //Compare choice with correct answer to question to see if it's right
 
-            //Creating a button for every choice in our questions array
+            //Creating a button for every choice in our questions array and target the correct answer with the data-correct class
             choiceOutput.insertAdjacentHTML('beforeend', `
             <button data-correct=${correctAnswer}>${choice}</button>
             `);
-
-            //Once a choice is selected, the next question is loaded
 
         }
 
         //Display the question and choices when start button is clicked
         questionWrap.classList.remove('hide');
+
     } else {
         localStorage.setItem("Score", JSON.stringify(quizTime)); // Set score to time remaining after quiz
         questionWrap.classList.add('hide'); // hides the last question
@@ -104,3 +108,5 @@ var countDown = btn.addEventListener('click', function () {
     timeLeft();
     startQuiz();
 });
+
+
