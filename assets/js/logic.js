@@ -70,7 +70,7 @@ function startQuiz() {
         finalScore.innerHTML = JSON.parse(localStorage.getItem("Score")); // displays the score for that test and asks for the test taker's initial
         submit.addEventListener('click', function(e) {
             e.preventDefault();
-            localStorage.setItem("Initials", JSON.stringify(initials.value));  // Stores the initial of the test take to localStorage upon the click of the submit button
+            localStorage.setItem("Initials", JSON.stringify(initials.value));  // Stores the initial of the test taker to localStorage upon the click of the submit button
             endScreen.innerText = 'Thank You. Please click on the View Highscores on the top left-hand side of the page to see highscores';
         
             
