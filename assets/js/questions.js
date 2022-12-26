@@ -18,5 +18,10 @@ var questions = [
         title: "Inside which HTML element do we put the JavaScript?",
         choices: ['A Js', 'B JavaScript', 'C Scripting', 'D Script'],
         answer: 'D Script'
-    },   
-]
+    },
+    {
+        title: "A container for storing data in javaScript is called a?",
+        choices: ['A Variable', 'B Function', 'C Method', 'D CSS'],
+        answer: 'A Variable'
+    }      
+];
